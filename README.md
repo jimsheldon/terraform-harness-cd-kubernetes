@@ -54,11 +54,13 @@ module "pipeline" {
   source = "git::https://github.com/jimsheldon/terraform-harness-cd-kubernetes.git"
 
   environment                 = "example"
-  project_identifier          = "example_project"
-  pipeline_name               = "deploy"
+  pipeline_name               = "deploy_example"
   kubernetes_namespace        = "example"
+
+  project_identifier          = data.harness_platform_project.example.id
   connector_github_id         = harness_platform_connector_github.example.id
   connector_kubernetes_id     = harness_platform_connector_kubernetes.example.id
+
   client_manifest_path        = "kubernetes/client-manifest.yaml"
   server_manifest_values_path = "kubernetes/server-manifest-values.yaml"
   server_manifest_path        = "kubernetes/server-manifest.yaml"
